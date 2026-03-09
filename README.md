@@ -1,21 +1,21 @@
-# flowmate-sdk
+# @flow-mate/sdk
 
 SDK for building [FlowMate](https://flow-mate.app)-compatible server responses. Parse incoming requests from the FlowMate iOS app and build properly formatted responses — including text messages, iOS Shortcut triggers, data payloads, and URLs.
 
 ## Install
 
 ```bash
-bun add flowmate-sdk
+bun add @flow-mate/sdk
 ```
 
 ```bash
-npm install flowmate-sdk
+npm install @flow-mate/sdk
 ```
 
 ## Quick Start
 
 ```ts
-import { parseRequest, text, toResponse } from "flowmate-sdk";
+import { parseRequest, text, toResponse } from "@flow-mate/sdk";
 
 Bun.serve({
   port: 3000,
@@ -35,7 +35,7 @@ Bun.serve({
 Build a simple text response.
 
 ```ts
-import { text } from "flowmate-sdk";
+import { text } from "@flow-mate/sdk";
 
 text("Hello from the server!");
 // => [{ msg: "Hello from the server!" }]
@@ -46,7 +46,7 @@ text("Hello from the server!");
 Build a response that triggers an iOS Shortcut.
 
 ```ts
-import { shortcut } from "flowmate-sdk";
+import { shortcut } from "@flow-mate/sdk";
 
 shortcut("Starting backup...", "BackupPhotos", { destination: "icloud" });
 // => [{ msg: "Starting backup...", shortcut: "BackupPhotos", data: { destination: "icloud" } }]
@@ -57,7 +57,7 @@ shortcut("Starting backup...", "BackupPhotos", { destination: "icloud" });
 Build a single response with full control over all fields.
 
 ```ts
-import { response } from "flowmate-sdk";
+import { response } from "@flow-mate/sdk";
 
 response({
   msg: "File ready",
@@ -72,7 +72,7 @@ response({
 Build multiple responses for sequential Shortcut execution. FlowMate runs them in order, passing results between Shortcuts.
 
 ```ts
-import { responses } from "flowmate-sdk";
+import { responses } from "@flow-mate/sdk";
 
 responses([
   { msg: "Downloading...", shortcut: "DownloadFile", data: { id: 42 } },
@@ -88,7 +88,7 @@ responses([
 Serialize responses to a JSON string.
 
 ```ts
-import { response, toJSON } from "flowmate-sdk";
+import { response, toJSON } from "@flow-mate/sdk";
 
 const json = toJSON([response({ msg: "Hello" })]);
 // => '[{"msg":"Hello"}]'
@@ -99,7 +99,7 @@ const json = toJSON([response({ msg: "Hello" })]);
 Create a `Response` object with `Content-Type: application/json`. Ready to return from any server handler.
 
 ```ts
-import { text, toResponse } from "flowmate-sdk";
+import { text, toResponse } from "@flow-mate/sdk";
 
 toResponse(text("Hello"));
 // => Response { status: 200, headers: { "Content-Type": "application/json" } }
@@ -115,7 +115,7 @@ toResponse(text("Created"), 201);
 Parse and validate an incoming FlowMate request. Accepts a JSON string, `Uint8Array`, or already-parsed object.
 
 ```ts
-import { parseRequest } from "flowmate-sdk";
+import { parseRequest } from "@flow-mate/sdk";
 
 const { sessionId, chatInput } = parseRequest(await req.json());
 ```
@@ -129,7 +129,7 @@ Validates:
 Extract the token from an `Authorization: Bearer <token>` header.
 
 ```ts
-import { extractBearerToken } from "flowmate-sdk";
+import { extractBearerToken } from "@flow-mate/sdk";
 
 const token = extractBearerToken(req.headers.get("Authorization"));
 if (token !== process.env.AUTH_TOKEN) {
@@ -142,7 +142,7 @@ if (token !== process.env.AUTH_TOKEN) {
 Validate that a URL uses HTTPS. FlowMate rejects non-HTTPS URLs.
 
 ```ts
-import { validateHttpsUrl } from "flowmate-sdk";
+import { validateHttpsUrl } from "@flow-mate/sdk";
 
 validateHttpsUrl("https://example.com"); // => "https://example.com"
 validateHttpsUrl("http://example.com"); // throws Error
@@ -195,7 +195,7 @@ The server must return a JSON array of response objects:
 ## Example: Full Server
 
 ```ts
-import { parseRequest, extractBearerToken, text, shortcut, responses, toResponse } from "flowmate-sdk";
+import { parseRequest, extractBearerToken, text, shortcut, responses, toResponse } from "@flow-mate/sdk";
 
 const AUTH_TOKEN = process.env.AUTH_TOKEN!;
 
@@ -244,7 +244,7 @@ import type {
   FlowMateResponse,
   ResponseOptions,
   ParsedRequest,
-} from "flowmate-sdk";
+} from "@flow-mate/sdk";
 ```
 
 ## Requirements

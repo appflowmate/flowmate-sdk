@@ -1,5 +1,5 @@
-import type { FlowMateResponse, ResponseOptions } from "./types.ts";
-import { validateHttpsUrl } from "./validation.ts";
+import type { FlowMateResponse, ResponseOptions } from "./types.js";
+import { validateHttpsUrl } from "./validation.js";
 
 /**
  * Build a single FlowMate response.

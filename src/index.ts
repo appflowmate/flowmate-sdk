@@ -4,7 +4,7 @@ export type {
   FlowMateWrappedResponse,
   ResponseOptions,
   ParsedRequest,
-} from "./types.ts";
+} from "./types.js";
 
 export {
   response,
@@ -13,10 +13,10 @@ export {
   shortcut,
   toJSON,
   toResponse,
-} from "./response.ts";
+} from "./response.js";
 
 export {
   parseRequest,
   validateHttpsUrl,
   extractBearerToken,
-} from "./validation.ts";
+} from "./validation.js";
