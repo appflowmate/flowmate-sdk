@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { response, responses, text, shortcut, toJSON, toResponse } from "../src/index.ts";
+import { response, responses, text, shortcut, toJSON, toResponse } from "../src/index.js";
 
 describe("response", () => {
   test("builds a simple text response", () => {

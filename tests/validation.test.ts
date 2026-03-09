@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { parseRequest, validateHttpsUrl, extractBearerToken } from "../src/index.ts";
+import { parseRequest, validateHttpsUrl, extractBearerToken } from "../src/index.js";
 
 describe("parseRequest", () => {
   const validSessionId = "550e8400-e29b-41d4-a716-446655440000";

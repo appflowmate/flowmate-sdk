@@ -1,5 +1,5 @@
 {
-  "name": "flowmate-sdk",
+  "name": "@flow-mate/sdk",
   "version": "0.1.0",
   "description": "SDK for building FlowMate-compatible server responses",
   "module": "src/index.ts",
@@ -18,8 +18,7 @@
     "src"
   ],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node && bun run build:types",
-    "build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
+    "build": "bunx --bun bun build src/index.ts --outdir dist --target node && bunx tsc -p tsconfig.build.json",
     "test": "bun test",
     "prepublishOnly": "bun run build"
   },
@@ -28,9 +27,22 @@
     "ios",
     "shortcuts",
     "automation",
-    "webhook"
+    "webhook",
+    "siri",
+    "n8n"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appflowmate/flowmate-sdk.git"
+  },
+  "homepage": "https://flow-mate.app",
+  "bugs": {
+    "url": "https://github.com/appflowmate/flowmate-sdk/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "typescript": "^5"
